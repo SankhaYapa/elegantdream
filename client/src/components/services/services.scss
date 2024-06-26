@@ -1,0 +1,90 @@
+.main-services-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    
+    span{
+        margin-top: 50px;
+        margin-bottom: 15px;
+        font-size: 1.5em;
+        font-family: "Rubik", sans-serif;
+        font-weight:500;
+    }
+    .services-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        // justify-content: space-around;
+         width: 80%;
+       gap: 20px;
+       
+    }
+    .service-card{
+        display: flex;
+
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        .service-card-img {
+            background-size: cover;
+            background-position: center;
+            width: 200px;
+           
+            height: 200px;
+          
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+          
+            &:hover {
+              transform: scale(1.05);
+              box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            }
+          
+        }
+          span {
+            margin: 0 0 15px;
+            margin-top: 5px;
+            font-family: "Rubik", sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+          }
+    }
+
+      @media (max-width: 768px){
+        .services-container {
+
+           gap: 0px;
+        }
+        span{
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-family: "Rubik", sans-serif;
+            font-weight: 600;
+            text-align: start;
+        }
+        .services-container {
+            width: 100%;
+           
+            .service-card-img {
+                width: 30vw;
+                height: 30vw;
+                margin: 5px;
+                span {
+                       
+                    margin-top: 0px;
+                    font-family: "Rubik", sans-serif;
+                    font-weight: 400;
+                    font-size: 12px;
+                  }
+            }
+        }
+      }
+      
+}

@@ -1,0 +1,70 @@
+.services-manage-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  
+    h2 {
+      text-align: center;
+    }
+  
+    .add-service-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+  
+      input {
+        margin: 5px;
+        padding: 10px;
+        width: 100%;
+        max-width: 400px;
+      }
+  
+      button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+  
+        &:hover {
+          background-color: #45a049;
+        }
+      }
+    }
+  
+    .services-table {
+      width: 100%;
+      overflow-x: auto;
+  
+      table {
+        width: 100%;
+        border-collapse: collapse;
+  
+        th, td {
+          padding: 12px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+  
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+  
+        button {
+          padding: 5px 10px;
+          background-color: #f44336;
+          color: white;
+          border: none;
+          cursor: pointer;
+  
+          &:hover {
+            background-color: #d32f2f;
+          }
+        }
+      }
+    }
+  }
+  
