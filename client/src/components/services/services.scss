@@ -12,12 +12,21 @@
         font-family: "Rubik", sans-serif;
         font-weight:500;
     }
+    .servicedesc{
+      margin-top: 10px;
+      margin-bottom: 30px;
+      font-size: 16px;
+      font-family: "Rubik", sans-serif;
+      font-weight:200;
+      width: 50%;
+      text-align: center;
+    }
     .services-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         // justify-content: space-around;
-         width: 80%;
+         width: 90%;
        gap: 20px;
        
     }
@@ -68,6 +77,15 @@
             font-family: "Rubik", sans-serif;
             font-weight: 600;
             text-align: start;
+        }
+        .servicedesc{
+          margin-top: 10px;
+          margin-bottom: 20px;
+          font-size: 12px;
+          font-family: "Rubik", sans-serif;
+          font-weight:200;
+          width: 80%;
+          text-align: center;
         }
         .services-container {
             width: 100%;

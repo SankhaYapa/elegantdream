@@ -76,3 +76,12 @@ export const deleteGallery = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+export const getGalleriesByService = async (req, res) => {
+  try {
+    const { service } = req.params; // Retrieve service from URL parameter
+    const galleries = await Gallery.find({ service });
+    res.status(200).json(galleries);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

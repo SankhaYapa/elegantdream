@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './services.scss';
+import { Link } from 'react-router-dom';
 
 export const Services = () => {
   const [services, setServices] = useState([]);
@@ -22,13 +23,16 @@ export const Services = () => {
   return (
     <div className='main-services-container'>
       <span>Our Services</span>
+      <span className='servicedesc'>Each photograph we capture is a testament to our passion for storytelling, turning fleeting moments into timeless art that resonates with emotion and beauty</span>
       <div className="services-container">
         {services.map(service => (
+             <Link to={`/service/${service._id}`} key={service._id} style={{textDecoration:'none',color:'black'}}>
           <div key={service._id} className='service-card'>
             <div  className="service-card-img" style={{ backgroundImage: `url("http://localhost:8800${service.imageUrl}")` }}>
            </div>
            <span>{service.title}</span>
           </div>
+          </Link>
         ))}
       </div>
     </div>

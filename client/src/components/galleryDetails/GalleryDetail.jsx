@@ -22,16 +22,18 @@ export const GalleryDetail = () => {
     fetchGalleryItem();
   }, [id]);
 
-  if (!galleryItem) return <div>Loading...</div>;
+  if (!galleryItem) return  <div className="loading-container">
+  {/* <img src="http://localhost:5173/gif/preloader.gif" alt="Loading..." /> */}
+</div>;
 
   return (
     <div>
           <Navbar></Navbar>
     <div className="gallery-detail-container"  >
       <div className="gallery-detail-cover" style={{ backgroundImage: `url("http://localhost:8800${galleryItem.coverImg}")` }}>
-      <h2>{galleryItem.service}</h2>
-      <br />
       <h2>{galleryItem.name}</h2>
+      <br />
+      <span>{galleryItem.service} </span>
       </div>
      
       <div className="image-collection">

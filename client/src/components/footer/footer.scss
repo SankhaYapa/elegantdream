@@ -1,0 +1,103 @@
+.footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    // position: absolute;
+    bottom: 0;
+    width: 100%;
+  
+    .footer-content {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 20px 100px;
+     
+      .footer-section {
+        flex: 1;
+        margin: 20px;
+        padding: 10px;
+        min-width: 200px;
+        justify-content: start;
+      
+        .logo-text {
+          font-size: 24px;
+          font-weight: bold;
+          color: #fff;
+          span {
+            color: #e8491d;
+          }
+        }
+        img {
+            height: 100px;
+            margin-top: -20px;
+           }
+        h2 {
+          font-size: 18px;
+          margin-bottom: 30px;
+          font-family: "Rubik", sans-serif;
+          text-align: start;
+          font-weight: 500;
+        }
+  
+        p, ul {
+          font-size: 14px;
+          margin: 10px 0;
+          font-family: "Rubik", sans-serif;
+          text-align: start;
+        }
+        .social-icons{
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            gap: 10px;
+            a{
+                color: white;
+                text-decoration: none;
+                font-family: "Rubik", sans-serif;
+                &:hover {
+                    color: #e8491d;
+                  }
+            }
+        }
+        ul {
+          list-style: none;
+          padding: 0;
+        text-align: start;
+          li {
+            margin: 5px 0;
+            
+            a {
+              
+              color: #fff;
+              text-decoration: none;
+              font-family: "Rubik", sans-serif;
+              &:hover {
+                color: #e8491d;
+              }
+            }
+          }
+        }
+  
+        .contact p {
+          margin: 5px 0;
+  
+          i {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+    @media (max-width: 768px) {
+        .footer-content {
+            padding: 20px 0;
+        }
+      }  
+    .footer-bottom {
+      font-size: 14px;
+      padding: 10px 0;
+      border-top: 1px solid #444;
+    }
+  }
+  

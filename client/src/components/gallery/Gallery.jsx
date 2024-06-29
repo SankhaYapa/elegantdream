@@ -28,6 +28,7 @@ export const Gallery = () => {
   return (
     <div className='main-gallery-container'>
       <span>Featured this year</span>
+      {/* <span className='gallerydesc'>With a meticulous dedication to craftsmanship, we specialize in capturing the essence of beauty, authentic emotions, and magical moments that define your most cherished occasions. Our photography preserves these memories, ensuring you can revisit and savor every enchanting detail whenever you wish.</span> */}
       <div className="gallery-container">
         {gallery.map(item => (
           <div

@@ -11,6 +11,15 @@
         font-family: "Rubik", sans-serif;
         font-weight: 500;
     }
+    .gallerydesc{
+      margin-top: 10px;
+      margin-bottom: 30px;
+      font-size: 16px;
+      font-family: "Rubik", sans-serif;
+      font-weight:200;
+      width: 50%;
+      text-align: center;
+    }
     .gallery-container {
         display: flex;
         flex-wrap: wrap;
@@ -61,6 +70,15 @@
             font-family: "Rubik", sans-serif;
             font-weight: 600;
             text-align: start;
+        }
+        .gallerydesc{
+          margin-top: 10px;
+          margin-bottom: 30px;
+          font-size: 12px;
+          font-family: "Rubik", sans-serif;
+          font-weight:200;
+          width: 80%;
+          text-align: center;
         }
         .gallery-container {
             width: 100%;

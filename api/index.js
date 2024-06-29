@@ -7,6 +7,9 @@ import serviceRoutes from './routes/serviceRoutes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import galleryRoutes from './routes/galleryRoutes.js';
+import headerRoutes from './routes/headerRoutes.js';
+
+
 const app = express();
 const PORT = 8800;
 
@@ -45,7 +48,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Routes
 app.use('/services', serviceRoutes);
 app.use('/gallery', galleryRoutes);
-
+app.use('/headers', headerRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

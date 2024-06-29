@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './galleryManage.scss';
+import { NavbarAdmin } from '../navbaradmin/NavbarAdmin';
 
 export const GalleryManage = () => {
   const [name, setName] = useState('');
@@ -61,46 +62,49 @@ export const GalleryManage = () => {
   };
 
   return (
-    <div className="gallery-manage-container">
-      <h2>Manage Gallery</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <select
-          value={selectedService}
-          onChange={(e) => setSelectedService(e.target.value)}
-          required
-        >
-          <option value="" disabled>Select Service Type</option>
-          {services.map((service) => (
-            <option key={service._id} value={service._id}>
-              {service.title}
-            </option>
-          ))}
-        </select>
-        <input
-          type="file"
-          onChange={handleThumbnailChange}
-          required
-        />
-        <input
-          type="file"
-          onChange={handleCoverImgChange}
-          required
-        />
-        <input
-          type="file"
-          multiple
-          onChange={handleImageChange}
-          required
-        />
-        <button type="submit">Add Gallery Item</button>
-      </form>
-    </div>
+    <div> <NavbarAdmin></NavbarAdmin>
+     <div className="gallery-manage-container">
+     
+     <h2>Manage Gallery</h2>
+     <form onSubmit={handleSubmit}>
+       <input
+         type="text"
+         placeholder="Name"
+         value={name}
+         onChange={(e) => setName(e.target.value)}
+         required
+       />
+       <select
+         value={selectedService}
+         onChange={(e) => setSelectedService(e.target.value)}
+         required
+       >
+         <option value="" disabled>Select Service Type</option>
+         {services.map((service) => (
+           <option key={service._id} value={service._id}>
+             {service.title}
+           </option>
+         ))}
+       </select>
+       <input
+         type="file"
+         onChange={handleThumbnailChange}
+         required
+       />
+       <input
+         type="file"
+         onChange={handleCoverImgChange}
+         required
+       />
+       <input
+         type="file"
+         multiple
+         onChange={handleImageChange}
+         required
+       />
+       <button type="submit">Add Gallery Item</button>
+     </form>
+   </div></div>
+   
   );
 };
