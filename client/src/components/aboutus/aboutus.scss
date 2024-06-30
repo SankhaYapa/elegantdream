@@ -1,0 +1,53 @@
+.about-us-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    background-color: #f9f9f9;
+    margin: 50px auto;
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+    @media (max-width: 768px) {
+      flex-direction: column;
+      padding: 20px;
+    }
+  }
+  
+  .about-us-content {
+    flex: 1;
+    padding-right: 20px;
+  
+    h2 {
+        font-family: "Rubik", sans-serif;
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+  
+    p {
+        font-family: "Rubik", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #666;
+    }
+  
+    @media (max-width: 768px) {
+      padding-right: 0;
+    }
+  }
+  
+  .about-us-image {
+    flex: 1;
+    text-align: center;
+  
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+  

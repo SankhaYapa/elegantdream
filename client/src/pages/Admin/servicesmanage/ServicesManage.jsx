@@ -14,14 +14,14 @@ export const ServicesManage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const [currentService, setCurrentService] = useState(null);
-
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   useEffect(() => {
     fetchServices();
   }, []);
 
   const fetchServices = async () => {
     try {
-      const response = await axios.get('http://localhost:8800/services');
+      const response = await axios.get(`${BASE_URL}/services`);
       setServices(response.data);
     } catch (error) {
       console.error('Error fetching services:', error);
@@ -42,7 +42,7 @@ export const ServicesManage = () => {
     formData.append('image', image);
 
     try {
-      const response = await axios.post('http://localhost:8800/services', formData, {
+      const response = await axios.post(`${BASE_URL}/services`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -60,7 +60,7 @@ export const ServicesManage = () => {
 
   const deleteService = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/services/${id}`);
+      await axios.delete(`${BASE_URL}/services/${id}`);
       setServices(services.filter((service) => service._id !== id));
     } catch (error) {
       console.error('Error deleting service:', error);
@@ -70,7 +70,7 @@ export const ServicesManage = () => {
   const editService = (service) => {
     setCurrentService(service);
     setTitle(service.title);
-    setImagePreview(`http://localhost:8800${service.imageUrl}`);
+    setImagePreview(`${BASE_URL}${service.imageUrl}`);
     setEditModalIsOpen(true);
   };
 
@@ -84,7 +84,7 @@ export const ServicesManage = () => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:8800/services/${currentService._id}`, formData, {
+      const response = await axios.put(`${BASE_URL}/services/${currentService._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -173,7 +173,7 @@ export const ServicesManage = () => {
                 <tr key={service._id}>
                   <td>{service.title}</td>
                   <td>
-                    <img src={`http://localhost:8800${service.imageUrl}`} alt={service.title} width="50" />
+                    <img src={`${BASE_URL}${service.imageUrl}`} alt={service.title} width="50" />
                   </td>
                   <td>
                     <button onClick={() => deleteService(service._id)}>Delete</button>

@@ -13,11 +13,11 @@ export const HeaderManage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [previewImages, setPreviewImages] = useState([]);
-
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   useEffect(() => {
     const fetchHeaders = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/headers');
+        const response = await axios.get(`${BASE_URL}/headers`);
         setHeaders(response.data);
       } catch (error) {
         console.error('Error fetching headers:', error);
@@ -42,7 +42,7 @@ export const HeaderManage = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8800/headers', formData, {
+      const response = await axios.post(`${BASE_URL}/headers`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -61,7 +61,7 @@ export const HeaderManage = () => {
 
   const handleDeleteHeader = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/headers/${id}`);
+      await axios.delete(`${BASE_URL}/headers/${id}`);
       setHeaders(headers.filter(header => header._id !== id));
       alert('Header deleted successfully');
     } catch (error) {
@@ -130,7 +130,7 @@ export const HeaderManage = () => {
           {headers.map(header => (
             <div key={header._id} className="header-item">
               {header.images.map((image, index) => (
-                <img key={index} src={`http://localhost:8800${image}`} alt={header.caption} />
+                <img key={index} src={`${BASE_URL}${image}`} alt={header.caption} />
               ))}
               <div className="header-info">
                 <p>{header.caption}</p>

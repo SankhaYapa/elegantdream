@@ -7,11 +7,11 @@ import { Navbar } from '../navbar/Navbar';
 export const GalleryDetail = () => {
   const { id } = useParams();
   const [galleryItem, setGalleryItem] = useState(null);
-
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   useEffect(() => {
     const fetchGalleryItem = async () => {
       try {
-        const response = await axios.get(`http://localhost:8800/gallery/${id}`);
+        const response = await axios.get(`${BASE_URL}/gallery/${id}`);
         setGalleryItem(response.data);
         console.log(response.data)
       } catch (error) {
@@ -30,7 +30,7 @@ export const GalleryDetail = () => {
     <div>
           <Navbar></Navbar>
     <div className="gallery-detail-container"  >
-      <div className="gallery-detail-cover" style={{ backgroundImage: `url("http://localhost:8800${galleryItem.coverImg}")` }}>
+      <div className="gallery-detail-cover" style={{ backgroundImage: `url("${BASE_URL}${galleryItem.coverImg}")` }}>
       <h2>{galleryItem.name}</h2>
       <br />
       <span>{galleryItem.service} </span>
@@ -38,7 +38,7 @@ export const GalleryDetail = () => {
      
       <div className="image-collection">
         {galleryItem.images.map((image, index) => (
-          <img key={index} src={`http://localhost:8800${image}`} alt={`Gallery ${index}`} />
+          <img key={index} src={`${BASE_URL}${image}`} alt={`Gallery ${index}`} />
         ))}
       </div>
     </div>

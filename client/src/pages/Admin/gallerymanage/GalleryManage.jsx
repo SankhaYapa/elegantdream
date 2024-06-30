@@ -20,10 +20,10 @@ export const GalleryManage = () => {
   const [galleries, setGalleries] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [editId, setEditId] = useState(null);
-
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const fetchServices = async () => {
     try {
-      const response = await axios.get('http://localhost:8800/services');
+      const response = await axios.get(`${BASE_URL}/services`);
       setServices(response.data);
     } catch (error) {
       console.error('Error fetching services:', error);
@@ -32,7 +32,7 @@ export const GalleryManage = () => {
 
   const fetchGalleries = async () => {
     try {
-      const response = await axios.get('http://localhost:8800/gallery');
+      const response = await axios.get(`${BASE_URL}/gallery`);
       setGalleries(response.data);
     } catch (error) {
       console.error('Error fetching galleries:', error);
@@ -84,14 +84,14 @@ export const GalleryManage = () => {
 
     try {
       if (editMode) {
-        await axios.put(`http://localhost:8800/gallery/${editId}`, formData, {
+        await axios.put(`${BASE_URL}/gallery/${editId}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
         alert('Gallery item updated successfully');
       } else {
-        await axios.post('http://localhost:8800/gallery', formData, {
+        await axios.post(`${BASE_URL}/gallery`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -118,9 +118,9 @@ export const GalleryManage = () => {
   const handleEdit = (gallery) => {
     setName(gallery.name);
     setSelectedService(gallery.service);
-    setThumbnailPreview(`http://localhost:8800${gallery.thumbnail}`);
-    setCoverImgPreview(`http://localhost:8800${gallery.coverImg}`);
-    setImagePreviews(gallery.images.map((image) => `http://localhost:8800${image}`));
+    setThumbnailPreview(`${BASE_URL}${gallery.thumbnail}`);
+    setCoverImgPreview(`${BASE_URL}${gallery.coverImg}`);
+    setImagePreviews(gallery.images.map((image) => `${BASE_URL}${image}`));
     setEditMode(true);
     setEditId(gallery._id);
     setModalIsOpen(true);
@@ -128,7 +128,7 @@ export const GalleryManage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/gallery/${id}`);
+      await axios.delete(`${BASE_URL}/gallery/${id}`);
       fetchGalleries();
       alert('Gallery item deleted successfully');
     } catch (error) {
@@ -231,7 +231,7 @@ export const GalleryManage = () => {
                   <td>{gallery.name}</td>
                   <td>{gallery.service}</td>
                   <td>
-                    <img src={`http://localhost:8800${gallery.thumbnail}`} alt={gallery.name} width="50" />
+                    <img src={`${BASE_URL}${gallery.thumbnail}`} alt={gallery.name} width="50" />
                   </td>
                   <td>
                   <button onClick={() => handleEdit(gallery)} className='edit'>Edit</button>

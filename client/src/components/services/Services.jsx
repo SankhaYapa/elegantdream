@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 
 export const Services = () => {
   const [services, setServices] = useState([]);
-
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/services');
+        const response = await axios.get(`${BASE_URL}/services`);
         setServices(response.data);
         console.log(response.data)
       } catch (error) {
@@ -28,7 +28,7 @@ export const Services = () => {
         {services.map(service => (
              <Link to={`/service/${service._id}`} key={service._id} style={{textDecoration:'none',color:'black'}}>
           <div key={service._id} className='service-card'>
-            <div  className="service-card-img" style={{ backgroundImage: `url("http://localhost:8800${service.imageUrl}")` }}>
+            <div  className="service-card-img" style={{ backgroundImage: `url("${BASE_URL}${service.imageUrl}")` }}>
            </div>
            <span>{service.title}</span>
           </div>

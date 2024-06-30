@@ -6,11 +6,11 @@ import { useNavigate } from 'react-router-dom';
 export const Gallery = () => {
   const [gallery, setGallery] = useState([]);
   const navigate = useNavigate();
-
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   useEffect(() => {
     const fetchGallery = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/gallery');
+        const response = await axios.get(`${BASE_URL}/gallery`);
         setGallery(response.data);
         console.log(response.data);
       } catch (error) {
@@ -34,7 +34,7 @@ export const Gallery = () => {
           <div
             key={item._id}
             className="gallery-card"
-            style={{ backgroundImage: `url("http://localhost:8800${item.thumbnail}")` }}
+            style={{ backgroundImage: `url("${BASE_URL}${item.thumbnail}")` }}
             onClick={() => handleCardClick(item._id)}
           >
             <div className="gallery-content">
