@@ -85,3 +85,35 @@ export const getGalleriesByService = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+export const updateGallery = async (req, res) => {
+  const { id } = req.params;
+  const { name, service } = req.body;
+  const thumbnail = req.files['thumbnail'] ? req.files['thumbnail'][0].filename : undefined;
+  const coverImg = req.files['coverImg'] ? req.files['coverImg'][0].filename : undefined;
+  const images = req.files['images'] ? req.files['images'].map(file => file.filename) : undefined;
+
+  try {
+    const gallery = await Gallery.findById(id);
+    if (!gallery) {
+      return res.status(404).json({ error: 'Gallery item not found' });
+    }
+
+    gallery.name = name || gallery.name;
+    gallery.service = service || gallery.service;
+
+    if (thumbnail) {
+      gallery.thumbnail = `/uploads/gallery/${gallery.name}/${thumbnail}`;
+    }
+    if (coverImg) {
+      gallery.coverImg = `/uploads/gallery/${gallery.name}/${coverImg}`;
+    }
+    if (images) {
+      gallery.images = images.map(image => `/uploads/gallery/${gallery.name}/${image}`);
+    }
+
+    await gallery.save();
+    res.status(200).json(gallery);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

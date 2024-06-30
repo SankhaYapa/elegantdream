@@ -7,6 +7,7 @@
   h2 {
     text-align: center;
     margin-bottom: 20px;
+    font-family: "Rubik", sans-serif;
   }
 
   button {
@@ -51,9 +52,21 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-
+        margin-left: 10px;
         &:hover {
           background-color: #c82333;
+        }
+      }
+      .edit{
+        padding: 5px 10px;
+        background-color: #019e2b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #00c93c;
         }
       }
     }

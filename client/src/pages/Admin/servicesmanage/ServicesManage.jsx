@@ -149,6 +149,7 @@ export const ServicesManage = () => {
               onChange={(e) => setTitle(e.target.value)}
               required
             />
+           <h3>Header Image</h3>
             <input
               type="file"
               onChange={handleImageChange}
@@ -176,7 +177,7 @@ export const ServicesManage = () => {
                   </td>
                   <td>
                     <button onClick={() => deleteService(service._id)}>Delete</button>
-                    <button onClick={() => editService(service)}>Edit</button>
+                    <button className='edit' onClick={() => editService(service)}>Edit</button>
                   </td>
                 </tr>
               ))}
