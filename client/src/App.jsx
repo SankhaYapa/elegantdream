@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import './App.css'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Home } from './pages/Home/Home'
@@ -15,23 +15,13 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-
-      <Route
-        path="/*"
-        element={
-          
-            <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/adminpanel" element={<Dashboard />} />
-            <Route path="/adminpanel/gallerymanage" element={<GalleryManage />} />
-            <Route path="/adminpanel/servicesmanage" element={<ServicesManage />} />
-            <Route path="/adminpanel/headermanage" element={<HeaderManage />} />
-            <Route path="/gallery/:id" element={<GalleryDetail />} />
-            <Route path="/service/:id" element={<ServiceDetail />} />
-            </Routes>
-         
-        }
-      />
+      <Route path="/" element={<Home />} />
+      <Route path="/adminpanel" element={<Dashboard />} />
+      <Route path="/adminpanel/gallerymanage" element={<GalleryManage />} />
+      <Route path="/adminpanel/servicesmanage" element={<ServicesManage />} />
+      <Route path="/adminpanel/headermanage" element={<HeaderManage />} />
+      <Route path="/gallery/:id" element={<GalleryDetail />} />
+      <Route path="/service/:id" element={<ServiceDetail />} />
     </Routes>
   </BrowserRouter>
   )

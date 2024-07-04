@@ -33,12 +33,11 @@ const connect = async () => {
   }
 };
 
-// CORS options
-const corsOptions = {
-  origin: 'http://localhost:5173',
-  credentials: true, // Allow credentials (cookies)
-};
 
+const corsOptions = {
+  origin: ["https://elegantdreamphotography.com", "https://www.elegantdreamphotography.com","http://localhost:5173"],
+  credentials: true, // Allow credentials (cookies)  
+};
 // Middleware
 app.use(cors(corsOptions));
 app.use(express.json());
