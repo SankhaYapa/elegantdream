@@ -46,14 +46,19 @@ export const Navbar = ({ scrollToSection, headerRef, servicesRef, galleryRef, ab
         </div>
         <div className={`links ${menuOpen ? 'open' : ''}`}>
           <span className="close-btn" onClick={toggleMenu}>×</span>
-          <span onClick={() => handleNavClick(headerRef)}>Home</span>
-          {location.pathname === '/' ? null : (
+          {location.pathname === '/' ?
+          <>
+          <span onClick={() => handleNavClick(headerRef)}>Home</span> 
+          <span onClick={() => handleNavClick(servicesRef)}>Services</span>
+          <span onClick={() => handleNavClick(galleryRef)}>Explore Gallery</span>
+          <span onClick={() => handleNavClick(aboutUsRef)}>About Us</span></> : (
             <>
-              <span onClick={() => handleNavClick(servicesRef)}>Services</span>
-              <span onClick={() => handleNavClick(galleryRef)}>Explore Gallery</span>
+            <Link className='Linkto' to="/">Home</Link>
+            <Link className='Linkto' to="/services">Services</Link>
+            <Link className='Linkto' to="/gallery">Explore Gallery</Link>
+            <Link className='Linkto' to="/aboutus">About Us</Link>
             </>
           )}
-          {location.pathname !== '/' && <Link className='Linkto' to="/aboutus" onClick={toggleMenu}>About Us</Link>}
         </div>
       </div>
       {menuOpen && <div className="overlay" onClick={toggleMenu}></div>}
