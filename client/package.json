@@ -19,6 +19,8 @@
     "dotenv": "^16.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loading-indicator": "^1.0.2",
+    "react-loading-indicators": "^1.0.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.23.1",
     "react-scroll": "^1.9.0",

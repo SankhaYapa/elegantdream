@@ -44,9 +44,9 @@ export const Gallery = () => {
             style={{ backgroundImage: `url("${BASE_URL}${item.thumbnail}")` }}
             onClick={() => handleCardClick(item._id)}
           >
-            <div className="gallery-content">
+            {/* <div className="gallery-content">
               <h3>{item.name}</h3>
-            </div>
+            </div> */}
           </div>
         ))}
       </div>
