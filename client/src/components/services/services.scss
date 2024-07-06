@@ -10,7 +10,7 @@
         margin-bottom: 15px;
         font-size: 1.5em;
         font-family: "Rubik", sans-serif;
-        font-weight:400;
+        font-weight:500;
     }
     .servicedesc{
       margin-top: 10px;
@@ -60,7 +60,7 @@
             margin: 0 0 15px;
             margin-top: 5px;
             font-family: "Rubik", sans-serif;
-            font-weight: 400;
+            font-weight: 300;
             font-size: 14px;
           }
     }
@@ -78,7 +78,7 @@
             margin-bottom: 10px;
             font-size: 16px;
             font-family: "Rubik", sans-serif;
-            font-weight: 400;
+            font-weight: 600;
             text-align: start;
         }
         .servicedesc{
@@ -97,13 +97,14 @@
                 width: 30vw;
                 height: 30vw;
                 margin: 5px;
-                span {
+              
+            }
+            span {
                        
-                    margin-top: 0px;
-                    font-family: "Rubik", sans-serif;
-                    font-weight: 400;
-                    font-size: 12px;
-                  }
+              margin-top: 0px;
+              font-family: "Rubik", sans-serif;
+              font-weight: 300;
+              font-size: 12px;
             }
         }
       }
