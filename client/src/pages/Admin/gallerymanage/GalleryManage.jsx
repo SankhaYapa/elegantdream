@@ -71,7 +71,6 @@ export const GalleryManage = () => {
     newPreviews.splice(index, 1);
     setImagePreviews(newPreviews);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -81,24 +80,24 @@ export const GalleryManage = () => {
     images.forEach((image) => formData.append('images', image));
     const selectedServiceObj = services.find((service) => service._id === selectedService);
     formData.append('service', selectedServiceObj.title);
-
+  
     try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: true,
+      };
+  
       if (editMode) {
-        await axios.put(`${BASE_URL}/gallery/${editId}`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
+        await axios.put(`${BASE_URL}/gallery/${editId}`, formData, config);
         alert('Gallery item updated successfully');
       } else {
-        await axios.post(`${BASE_URL}/gallery`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
+        await axios.post(`${BASE_URL}/gallery`, formData, config);
         alert('Gallery item added successfully');
       }
-
+  
+      // Reset form state
       setName('');
       setThumbnail(null);
       setCoverImg(null);
@@ -114,6 +113,7 @@ export const GalleryManage = () => {
       console.error('Error uploading gallery item:', error);
     }
   };
+  
 
   const handleEdit = (gallery) => {
     setName(gallery.name);
@@ -178,11 +178,13 @@ export const GalleryManage = () => {
               onChange={handleThumbnailChange}
               required
             />
+    
             {thumbnailPreview && (
               <div className="image-preview-container">
                 <img src={thumbnailPreview} alt="Thumbnail Preview" />
               </div>
             )}
+
             <label>Cover Image:</label>
             <input
               type="file"

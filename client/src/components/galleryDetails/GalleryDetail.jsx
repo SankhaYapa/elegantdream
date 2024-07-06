@@ -18,7 +18,7 @@ export const GalleryDetail = () => {
         console.error('Error fetching gallery item:', error);
       }
     };
-
+      
     fetchGalleryItem();
   }, [id]);
 
@@ -33,9 +33,11 @@ export const GalleryDetail = () => {
       <div className="gallery-detail-cover" style={{ backgroundImage: `url("${BASE_URL}${galleryItem.coverImg}")` }}>
       <h2>{galleryItem.name}</h2>
       <br />
+      
       <span>{galleryItem.service} </span>
+      
       </div>
-     
+            
       <div className="image-collection">
         {galleryItem.images.map((image, index) => (
           <img key={index} src={`${BASE_URL}${image}`} alt={`Gallery ${index}`} />

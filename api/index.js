@@ -2,16 +2,15 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { config as configDotenv } from 'dotenv'; // Import config method from dotenv
+import { config as configDotenv } from 'dotenv';
 import serviceRoutes from './routes/serviceRoutes.js';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import galleryRoutes from './routes/galleryRoutes.js';
 import headerRoutes from './routes/headerRoutes.js';
-
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
-const PORT = 8800;
+const PORT = process.env.PORT || 8805;
 
 // Load environment variables from .env file
 configDotenv();
@@ -33,14 +32,15 @@ const connect = async () => {
   }
 };
 
-
 const corsOptions = {
-  origin: ["https://elegantdreamphotography.com", "https://www.elegantdreamphotography.com","http://localhost:5173"],
-  credentials: true, // Allow credentials (cookies)  
+  origin: ["https://elegantdreamphotography.com", "https://www.elegantdreamphotography.com", "http://localhost:5173"],
+  credentials: true, // Allow credentials (cookies)
 };
+
 // Middleware
 app.use(cors(corsOptions));
-app.use(express.json());
+app.use(express.json({ limit: '50mb' })); // Increase the limit for JSON payloads
+app.use(express.urlencoded({ limit: '50mb', extended: true })); // Increase the limit for URL-encoded payloads
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -48,11 +48,17 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/services', serviceRoutes);
 app.use('/gallery', galleryRoutes);
 app.use('/headers', headerRoutes);
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || 'Something went wrong!';
-  return res.status(errorStatus).send(errorMessage);
+  res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: process.env.NODE_ENV === 'development' ? err.stack : {}
+  });
 });
 
 // Start server
