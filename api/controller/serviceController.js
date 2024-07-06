@@ -12,6 +12,7 @@ export const getAllServices = async (req, res) => {
 export const createService = async (req, res) => {
     console.log("Hello")
   const { title } = req.body;
+  const { tag } = req.body;
   const imageUrl = req.file ? `/uploads/services/${req.file.filename}` : '';
   const service = new Service({ title,tag, imageUrl });
   try {
