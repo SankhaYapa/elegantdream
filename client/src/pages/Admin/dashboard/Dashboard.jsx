@@ -5,6 +5,7 @@ import { GalleryManage } from '../gallerymanage/GalleryManage';
 import { ServicesManage } from '../servicesmanage/ServicesManage';
 import { HeaderManage } from '../headermanage/HeaderManage';
 import { NavbarAdmin } from '../navbaradmin/NavbarAdmin';
+import { GalleryM } from '../galleryM/GalleryM';
 
 export const Dashboard = () => {
   return (
@@ -41,7 +42,7 @@ export const Dashboard = () => {
       </div>
       <div className="dashboard-content">
         <Routes>
-          <Route path="/adminpanel/gallerymanage" element={<GalleryManage />} />
+          <Route path="/adminpanel/gallerymanage" element={<GalleryM />} />
           <Route path="/adminpanel/servicesmanage" element={<ServicesManage />} />
           <Route path="/adminpanel/headermanage" element={<HeaderManage />} />
         </Routes>

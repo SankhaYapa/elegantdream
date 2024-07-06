@@ -8,6 +8,7 @@ import { GalleryDetail } from './components/galleryDetails/GalleryDetail'
 import { ServiceDetail } from './components/serviceDetails/ServiceDetail'
 import { HeaderManage } from './pages/Admin/headermanage/HeaderManage'
 import { Dashboard } from './pages/Admin/dashboard/Dashboard'
+import { GalleryM } from './pages/Admin/galleryM/GalleryM';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/adminpanel" element={<Dashboard />} />
-      <Route path="/adminpanel/gallerymanage" element={<GalleryManage />} />
+      <Route path="/adminpanel/gallerymanage" element={<GalleryM />} />
       <Route path="/adminpanel/servicesmanage" element={<ServicesManage />} />
       <Route path="/adminpanel/headermanage" element={<HeaderManage />} />
       <Route path="/gallery/:id" element={<GalleryDetail />} />
