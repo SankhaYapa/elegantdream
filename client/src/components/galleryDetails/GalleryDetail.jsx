@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './galleryDetail.scss';
 import { Navbar } from '../navbar/Navbar';
+import { Footer } from '../footer/Footer';
 
 export const GalleryDetail = () => {
   const { id } = useParams();
@@ -45,6 +46,7 @@ export const GalleryDetail = () => {
         ))}
       </div>
     </div>
+    <Footer></Footer>
     </div>
  
   );

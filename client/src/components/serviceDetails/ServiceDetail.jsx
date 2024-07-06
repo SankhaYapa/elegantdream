@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './serviceDetail.scss';
 import { Navbar } from '../navbar/Navbar';
+import { Footer } from '../footer/Footer';
 
 export const ServiceDetail = () => {
   const { id } = useParams();
@@ -53,6 +54,7 @@ export const ServiceDetail = () => {
           ))}
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 };
