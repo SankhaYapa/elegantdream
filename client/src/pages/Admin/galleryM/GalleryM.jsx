@@ -3,6 +3,8 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import './galleryManage.scss';
 import { NavbarAdmin } from '../navbaradmin/NavbarAdmin';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 Modal.setAppElement('#root');
 
@@ -25,19 +27,21 @@ export const GalleryM = () => {
 
   const fetchServices = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/services`);
+      const response = await axios.get(`${BASE_URL}/api/services`);
       setServices(response.data);
     } catch (error) {
       console.error('Error fetching services:', error);
+      toast.error('Error fetching services. Please try again.');
     }
   };
 
   const fetchGalleries = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/gallery`);
+      const response = await axios.get(`${BASE_URL}/api/gallery`);
       setGalleries(response.data);
     } catch (error) {
       console.error('Error fetching galleries:', error);
+      toast.error('Error fetching galleries. Please try again.');
     }
   };
 
@@ -95,27 +99,20 @@ export const GalleryM = () => {
       };
 
       if (editMode) {
-        await axios.put(`${BASE_URL}/gallery/${editId}`, formData, config);
-        alert('Gallery item updated successfully');
+        await axios.put(`${BASE_URL}/api/gallery/${editId}`, formData, config);
+        toast.success('Gallery item updated successfully');
       } else {
-        await axios.post(`${BASE_URL}/gallery`, formData, config);
-        alert('Gallery item added successfully');
+        await axios.post(`${BASE_URL}/api/gallery`, formData, config);
+        toast.success('Gallery item added successfully');
       }
 
       // Reset form state
-      setName('');
-      setThumbnail(null);
-      setCoverImg(null);
-      setImages([]);
-      setThumbnailPreview(null);
-      setCoverImgPreview(null);
-      setImagePreviews([]);
+      resetForm();
       setModalIsOpen(false);
-      setEditMode(false);
-      setEditId(null);
       fetchGalleries();
     } catch (error) {
       console.error('Error uploading gallery item:', error);
+      toast.error('Failed to upload gallery item. Please try again.');
     } finally {
       setIsLoading(false); // Set loading back to false after request completes
     }
@@ -134,12 +131,33 @@ export const GalleryM = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${BASE_URL}/gallery/${id}`);
+      await axios.delete(`${BASE_URL}/api/gallery/${id}`);
       fetchGalleries();
-      alert('Gallery item deleted successfully');
+      toast.success('Gallery item deleted successfully');
     } catch (error) {
       console.error('Error deleting gallery item:', error);
+      toast.error('Failed to delete gallery item. Please try again.');
     }
+  };
+
+  // Reset form fields
+  const resetForm = () => {
+    setName('');
+    setThumbnail(null);
+    setCoverImg(null);
+    setImages([]);
+    setThumbnailPreview(null);
+    setCoverImgPreview(null);
+    setImagePreviews([]);
+    setSelectedService('');
+    setEditMode(false);
+    setEditId(null);
+  };
+
+  // Handle modal close request
+  const handleCloseModal = () => {
+    resetForm(); // Reset form fields when closing modal
+    setModalIsOpen(false);
   };
 
   return (
@@ -150,7 +168,7 @@ export const GalleryM = () => {
         <button onClick={() => setModalIsOpen(true)}>Add Gallery Item</button>
         <Modal
           isOpen={modalIsOpen}
-          onRequestClose={() => setModalIsOpen(false)}
+          onRequestClose={handleCloseModal}
           contentLabel="Add Gallery Item"
           className="Modal"
           overlayClassName="Overlay"
@@ -184,13 +202,11 @@ export const GalleryM = () => {
               onChange={handleThumbnailChange}
               required
             />
-    
             {thumbnailPreview && (
               <div className="image-preview-container">
                 <img src={thumbnailPreview} alt="Thumbnail Preview" />
               </div>
             )}
-
             <label>Cover Image:</label>
             <input
               type="file"
@@ -222,7 +238,7 @@ export const GalleryM = () => {
             <button type="submit" disabled={isLoading}>
               {isLoading ? 'Loading...' : (editMode ? 'Update Gallery Item' : 'Add Gallery Item')}
             </button>
-            <button type="button" onClick={() => setModalIsOpen(false)}>Cancel</button>
+            <button type="button" onClick={handleCloseModal}>Cancel</button>
           </form>
         </Modal>
         <div className="galleries-table">
@@ -252,6 +268,7 @@ export const GalleryM = () => {
             </tbody>
           </table>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );

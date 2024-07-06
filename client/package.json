@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy":"https://api.elegantdreamphotography.com/",
+  "proxy": "https://api.elegantdreamphotography.com/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -21,8 +21,10 @@
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.23.1",
+    "react-scroll": "^1.9.0",
     "react-slick": "^0.30.2",
     "react-slideshow-image": "^4.3.1",
+    "react-toastify": "^10.0.5",
     "sass": "^1.77.6",
     "slick-carousel": "^1.8.1"
   },

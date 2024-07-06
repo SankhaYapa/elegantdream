@@ -11,7 +11,7 @@ export const GalleryDetail = () => {
   useEffect(() => {
     const fetchGalleryItem = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/gallery/${id}`);
+        const response = await axios.get(`${BASE_URL}/api/gallery/${id}`);
         setGalleryItem(response.data);
         console.log(response.data)
       } catch (error) {
@@ -21,19 +21,20 @@ export const GalleryDetail = () => {
       
     fetchGalleryItem();
   }, [id]);
-
+  const handleNavClick = (section) => {
+    navigate("/", { state: { section } });
+  };
   if (!galleryItem) return  <div className="loading-container">
   {/* <img src="http://localhost:5173/gif/preloader.gif" alt="Loading..." /> */}
 </div>;
 
   return (
     <div>
-          <Navbar></Navbar>
+          <Navbar handleNavClick={handleNavClick} />
     <div className="gallery-detail-container"  >
       <div className="gallery-detail-cover" style={{ backgroundImage: `url("${BASE_URL}${galleryItem.coverImg}")` }}>
       <h2>{galleryItem.name}</h2>
-      <br />
-      
+    
       <span>{galleryItem.service} </span>
       
       </div>

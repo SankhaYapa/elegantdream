@@ -9,7 +9,7 @@ export const Services = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/services`);
+        const response = await axios.get(`${BASE_URL}/api/services`);
         setServices(response.data);
         console.log(response.data)
       } catch (error) {

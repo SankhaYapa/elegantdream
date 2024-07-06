@@ -35,7 +35,8 @@ export const NavbarAdmin = () => {
          </nav>
         </div>
       </div>
-      {menuOpen && <div className="overlay" onClick={toggleMenu}></div>}
+      {menuOpen && <div className="overlay" onClick={toggleMenu}>
+        </div>}
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const Gallery = () => {
   useEffect(() => {
     const fetchGallery = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/gallery`);
+        const response = await axios.get(`${BASE_URL}/api/gallery`);
         setGallery(response.data);
         console.log(response.data);
       } catch (error) {
@@ -27,7 +27,14 @@ export const Gallery = () => {
 
   return (
     <div className='main-gallery-container'>
-      <span>Featured this year</span>
+          {location.pathname === '/' ? 
+          <span>Featured this year</span>:
+          <>
+          <span>All Galleries</span>
+          <span className='gallerydesc'>Discover the artistry in every frame, where moments become timeless stories of beauty and emotion.</span>
+          </>
+           
+           }
       {/* <span className='gallerydesc'>With a meticulous dedication to craftsmanship, we specialize in capturing the essence of beauty, authentic emotions, and magical moments that define your most cherished occasions. Our photography preserves these memories, ensuring you can revisit and savor every enchanting detail whenever you wish.</span> */}
       <div className="gallery-container">
         {gallery.map(item => (

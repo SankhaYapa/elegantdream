@@ -1,15 +1,15 @@
 .about-us-container {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     padding: 50px;
     background-color: #f9f9f9;
     margin: 50px auto;
-    max-width: 1200px;
+    max-width: 900px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
+    margin-top: 100px;
     @media (max-width: 768px) {
       flex-direction: column;
       padding: 20px;
@@ -50,4 +50,30 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
   }
-  
+  @media (max-width: 768px){
+    .about-us-container{
+     margin-top: 50px; 
+
+     .about-us-content {
+     
+      h2 {
+          font-family: "Rubik", sans-serif;
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+    
+      p {
+          font-family: "Rubik", sans-serif;
+        font-size: 12px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        color: #666;
+      }
+    
+      @media (max-width: 768px) {
+        padding-right: 0;
+      }
+    }
+    }
+  }

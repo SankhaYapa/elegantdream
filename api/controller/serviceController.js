@@ -13,7 +13,7 @@ export const createService = async (req, res) => {
     console.log("Hello")
   const { title } = req.body;
   const imageUrl = req.file ? `/uploads/services/${req.file.filename}` : '';
-  const service = new Service({ title, imageUrl });
+  const service = new Service({ title,tag, imageUrl });
   try {
     const savedService = await service.save();
     res.status(201).json(savedService);
@@ -24,9 +24,10 @@ export const createService = async (req, res) => {
 
 export const updateService = async (req, res) => {
   const { title } = req.body;
+  const { tag } = req.body;
   const imageUrl = req.file ? `/uploads/services/${req.file.filename}` : '';
   try {
-    const updatedService = await Service.findByIdAndUpdate(req.params.id, { title, imageUrl }, { new: true });
+    const updatedService = await Service.findByIdAndUpdate(req.params.id, { title,tag, imageUrl }, { new: true });
     res.status(200).json(updatedService);
   } catch (error) {
     res.status(400).json({ message: error.message });

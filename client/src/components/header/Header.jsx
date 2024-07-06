@@ -9,7 +9,7 @@ const Header = () => {
   useEffect(() => {
     const fetchHeaders = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/headers`);
+        const response = await axios.get(`${BASE_URL}/api/headers`);
         setHeaders(response.data);
         console.log(response.data)
       } catch (error) {

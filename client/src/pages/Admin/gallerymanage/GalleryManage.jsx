@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
-import './galleryManage.scss';
+// import './galleryManage.scss';
 import { NavbarAdmin } from '../navbaradmin/NavbarAdmin';
 
 Modal.setAppElement('#root');
@@ -138,7 +138,7 @@ export const GalleryManage = () => {
 
   return (
     <div>
-      <NavbarAdmin />
+      {/* <NavbarAdmin />
       <div className="gallery-manage-container">
         <h2>Manage Gallery</h2>
         <button onClick={() => setModalIsOpen(true)}>Add Gallery Item</button>
@@ -244,7 +244,7 @@ export const GalleryManage = () => {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

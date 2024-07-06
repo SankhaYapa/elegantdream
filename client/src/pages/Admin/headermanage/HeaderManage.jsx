@@ -3,6 +3,8 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import './headermanage.scss';
 import { NavbarAdmin } from '../navbaradmin/NavbarAdmin';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 Modal.setAppElement('#root');
 
@@ -13,14 +15,17 @@ export const HeaderManage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [previewImages, setPreviewImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // Track loading state
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   useEffect(() => {
     const fetchHeaders = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/headers`);
+        const response = await axios.get(`${BASE_URL}/api/headers`);
         setHeaders(response.data);
       } catch (error) {
         console.error('Error fetching headers:', error);
+        toast.error('Error fetching headers. Please try again.');
       }
     };
 
@@ -35,6 +40,8 @@ export const HeaderManage = () => {
       return;
     }
 
+    setIsLoading(true); // Start loading
+
     const formData = new FormData();
     formData.append('caption', caption);
     for (let i = 0; i < files.length; i++) {
@@ -42,7 +49,7 @@ export const HeaderManage = () => {
     }
 
     try {
-      const response = await axios.post(`${BASE_URL}/headers`, formData, {
+      const response = await axios.post(`${BASE_URL}/api/headers`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -52,20 +59,24 @@ export const HeaderManage = () => {
       setFiles([]);
       setPreviewImages([]);
       setErrorMessage('');
-      alert('Header added successfully');
+      toast.success('Header added successfully.');
       setModalIsOpen(false);
     } catch (error) {
       console.error('Error adding header:', error);
+      toast.error('Failed to add header. Please try again.');
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
   const handleDeleteHeader = async (id) => {
     try {
-      await axios.delete(`${BASE_URL}/headers/${id}`);
+      await axios.delete(`${BASE_URL}/api/headers/${id}`);
       setHeaders(headers.filter(header => header._id !== id));
-      alert('Header deleted successfully');
+      toast.success('Header deleted successfully.');
     } catch (error) {
       console.error('Error deleting header:', error);
+      toast.error('Failed to delete header. Please try again.');
     }
   };
 
@@ -80,17 +91,27 @@ export const HeaderManage = () => {
     setPreviewImages(filePreviews);
   };
 
+  const resetForm = () => {
+    setCaption('');
+    setFiles([]);
+    setPreviewImages([]);
+    setErrorMessage('');
+  };
+
   return (
     <div>
       <NavbarAdmin />
       <div className="header-manage-container">
         <h2>Manage Headers Image Slider</h2>
-        {headers.length < 4 && (
-          <button onClick={() => setModalIsOpen(true)}>Add New Image Slider +</button>
-        )}
+        <button onClick={() => setModalIsOpen(true)} disabled={headers.length >= 4}>
+          {headers.length >= 4 ? 'Maximum Headers Reached (4 Slides)' : 'Add New Image Slider +'}
+        </button>
         <Modal
           isOpen={modalIsOpen}
-          onRequestClose={() => setModalIsOpen(false)}
+          onRequestClose={() => {
+            resetForm();
+            setModalIsOpen(false);
+          }}
           contentLabel="Add Header"
           className="Modal"
           overlayClassName="Overlay"
@@ -122,8 +143,17 @@ export const HeaderManage = () => {
                 <img key={index} src={image} alt="Preview" />
               ))}
             </div>
-            <button type="submit">Add Header</button>
-            <button type="button" onClick={() => setModalIsOpen(false)}>Cancel</button>
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              <>
+                <button type="submit">Add Header</button>
+                <button type="button" onClick={() => {
+                  resetForm();
+                  setModalIsOpen(false);
+                }}>Cancel</button>
+              </>
+            )}
           </form>
         </Modal>
         <div className="header-list">
@@ -140,6 +170,9 @@ export const HeaderManage = () => {
           ))}
         </div>
       </div>
+      <ToastContainer /> {/* ToastContainer for react-toastify */}
     </div>
   );
 };
+
+export default HeaderManage;

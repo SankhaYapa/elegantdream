@@ -5,6 +5,10 @@ const serviceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  tag: {
+    type: String,
+    required: true,
+  },
   imageUrl: {
     type: String,
     required: true,

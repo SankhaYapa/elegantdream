@@ -33,7 +33,8 @@ const connect = async () => {
 
 // CORS configuration
 const corsOptions = {
-  origin: "https://elegantdreamphotography.com",
+ origin: "https://elegantdreamphotography.com",
+  // origin: "http://localhost:5173",
   credentials: true, // Allow credentials (cookies)
 };
 
