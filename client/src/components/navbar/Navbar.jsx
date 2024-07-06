@@ -43,7 +43,6 @@ export const Navbar = ({ scrollToSection, headerRef, servicesRef, galleryRef, ab
             <Link className='Linkto' to="/aboutus">About Us</Link>
             </>
           )}
-
         </div>
         <div className={`links ${menuOpen ? 'open' : ''}`}>
           <span className="close-btn" onClick={toggleMenu}>×</span>
