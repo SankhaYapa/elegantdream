@@ -49,7 +49,7 @@ export const ServiceDetail = () => {
               onClick={() => navigate(`/gallery/${gallery._id}`)}
             >
               <img src={`${BASE_URL}${gallery.thumbnail}`} alt={gallery.name} />
-              <span>{gallery.name}</span>
+              {/* <span>{gallery.name}</span> */}
             </div>
           ))}
         </div>
