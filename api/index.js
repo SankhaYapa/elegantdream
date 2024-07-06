@@ -45,9 +45,9 @@ app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
-app.use('/services', serviceRoutes);
-app.use('/gallery', galleryRoutes);
-app.use('/headers', headerRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/gallery', galleryRoutes);
+app.use('/api/headers', headerRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -66,3 +66,4 @@ app.listen(PORT, () => {
   connect();
   console.log(`Backend server is running on port ${PORT}`);
 });
+
