@@ -53,9 +53,9 @@ export const Home = () => {
       <div ref={servicesRef} className={isVisible.services ? 'dropdown-enter-active' : 'dropdown-enter'}>
         <Services />
       </div>
-      <div ref={galleryRef} className={isVisible.gallery ? 'dropdown-enter-active' : 'dropdown-enter'}>
+      {/* <div ref={galleryRef} className={isVisible.gallery ? 'dropdown-enter-active' : 'dropdown-enter'}>
         <Gallery />
-      </div>
+      </div> */}
       <div ref={aboutUsRef} className={isVisible.aboutUs ? 'dropdown-enter-active' : 'dropdown-enter'}>
         <AboutUs />
       </div>

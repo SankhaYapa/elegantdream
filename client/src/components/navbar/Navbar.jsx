@@ -34,7 +34,8 @@ export const Navbar = ({ scrollToSection, headerRef, servicesRef, galleryRef, ab
           <>
           <span onClick={() => handleNavClick(headerRef)}>Home</span> 
           <span onClick={() => handleNavClick(servicesRef)}>Services</span>
-          <span onClick={() => handleNavClick(galleryRef)}>Explore Gallery</span>
+          {/* <span onClick={() => handleNavClick(galleryRef)}>Explore Gallery</span> */}
+          <Link className='Linkto' to="/gallery">Explore Gallery</Link>
           <span onClick={() => handleNavClick(aboutUsRef)}>About Us</span></> : (
             <>
             <Link className='Linkto' to="/">Home</Link>
@@ -50,7 +51,8 @@ export const Navbar = ({ scrollToSection, headerRef, servicesRef, galleryRef, ab
           <>
           <span onClick={() => handleNavClick(headerRef)}>Home</span> 
           <span onClick={() => handleNavClick(servicesRef)}>Services</span>
-          <span onClick={() => handleNavClick(galleryRef)}>Explore Gallery</span>
+          <Link className='Linkto' to="/gallery">Explore Gallery</Link>
+          {/* <span onClick={() => handleNavClick(galleryRef)}>Explore Gallery</span> */}
           <span onClick={() => handleNavClick(aboutUsRef)}>About Us</span></> : (
             <>
             <Link className='Linkto' to="/">Home</Link>

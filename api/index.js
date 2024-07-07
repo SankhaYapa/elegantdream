@@ -34,14 +34,14 @@ const connect = async () => {
 // CORS configuration
 const corsOptions = {
  origin: "https://elegantdreamphotography.com",
-  // origin: "http://localhost:5173",
+ //origin: "http://localhost:5173",
   credentials: true, // Allow credentials (cookies)
 };
 
 // Middleware
 app.use(cors(corsOptions));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json({ limit: '200mb' }));
+app.use(express.urlencoded({ limit: '200mb', extended: true }));
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

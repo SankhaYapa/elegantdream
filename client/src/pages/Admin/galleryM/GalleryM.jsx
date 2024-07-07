@@ -80,19 +80,19 @@ export const GalleryM = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // Set loading to true when form is submitted
-
+    setIsLoading(true);
+  
     const formData = new FormData();
     formData.append('name', name);
     formData.append('thumbnail', thumbnail);
     formData.append('coverImg', coverImg);
     images.forEach((image) => formData.append('images', image));
-    console.log(services)
+  
     const selectedServiceObj = services.find((service) => service._id === selectedService);
-    console.log(selectedServiceObj)
-    formData.append('service',  selectedServiceObj.title);
-
-
+    if (selectedServiceObj) {
+      formData.append('service', selectedServiceObj.title);
+    }
+  
     try {
       const config = {
         headers: {
@@ -100,7 +100,7 @@ export const GalleryM = () => {
         },
         withCredentials: true,
       };
-
+  
       if (editMode) {
         await axios.put(`${BASE_URL}/api/gallery/${editId}`, formData, config);
         toast.success('Gallery item updated successfully');
@@ -108,8 +108,7 @@ export const GalleryM = () => {
         await axios.post(`${BASE_URL}/api/gallery`, formData, config);
         toast.success('Gallery item added successfully');
       }
-
-      // Reset form state
+  
       resetForm();
       setModalIsOpen(false);
       fetchGalleries();
@@ -117,9 +116,10 @@ export const GalleryM = () => {
       console.error('Error uploading gallery item:', error);
       toast.error('Failed to upload gallery item. Please try again.');
     } finally {
-      setIsLoading(false); // Set loading back to false after request completes
+      setIsLoading(false);
     }
   };
+  
 
   const handleEdit = (gallery) => {
     setName(gallery.name);
@@ -184,10 +184,10 @@ export const GalleryM = () => {
         >
           <h2>{editMode ? 'Edit Gallery Item' : 'Add Gallery Item'}</h2>
           <form onSubmit={handleSubmit}>
-            <label>Name:</label>
+            <label>Tag:</label>
             <input
               type="text"
-              placeholder="Name"
+              placeholder="Tag Line"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required

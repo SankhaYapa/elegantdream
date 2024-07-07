@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './galleryDetail.scss'; // Ensure this file contains your styles
 import { Navbar } from '../navbar/Navbar';
 import { Footer } from '../footer/Footer';
@@ -25,7 +25,34 @@ export const GalleryDetail = () => {
 
     fetchGalleryItem();
   }, [id]);
+  const [service, setService] = useState(null);
+  const [galleries, setGalleries] = useState([]);
+  const navigate = useNavigate();
+ 
+  useEffect(() => {
+    const fetchServiceAndGalleries = async () => {
+      try {
+        const serviceResponse = await axios.get(`${BASE_URL}/api/services/${id}`);
+        const serviceData = serviceResponse.data;
+        setService(serviceData);
 
+        if (serviceData) {
+          const galleriesResponse = await axios.get(`${BASE_URL}/api/gallery/service/${serviceData.title}`);
+          setGalleries(galleriesResponse.data);
+          console.log(galleries)
+        }
+        if(galleries){
+          const response = await axios.get(`${BASE_URL}/api/gallery/${galleries._id}`);
+        setGalleryItem(response.data);
+        console.log(response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching service and galleries:', error);
+      }
+    };
+
+    fetchServiceAndGalleries();
+  }, [id]);
   const handleNavClick = (section) => {
     navigate('/', { state: { section } });
   };

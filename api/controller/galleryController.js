@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-export const uploadGallery = upload.fields([{ name: 'thumbnail', maxCount: 1 },{ name: 'coverImg', maxCount: 1 }, { name: 'images', maxCount: 10 }]);
+export const uploadGallery = upload.fields([{ name: 'thumbnail', maxCount: 1 },{ name: 'coverImg', maxCount: 1 }, { name: 'images', maxCount: 50 }]);
 
 export const createGallery = async (req, res) => {
   const { name } = req.body;

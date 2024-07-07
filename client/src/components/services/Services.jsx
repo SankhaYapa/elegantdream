@@ -39,7 +39,8 @@ export const Services = () => {
         {services.length === 0 ? (
           Array.from({ length: 6 }).map((_, index) => (
             <div className='service-card' key={index}>
-              <Skeleton height={'30vw'} width={'30vw'} className="service-card-img"/>
+           <Skeleton className="service-card-img" />
+
             </div>
           ))
         ) : (
