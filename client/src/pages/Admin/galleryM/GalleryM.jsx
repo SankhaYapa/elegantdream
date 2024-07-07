@@ -88,7 +88,8 @@ export const GalleryM = () => {
     formData.append('coverImg', coverImg);
     images.forEach((image) => formData.append('images', image));
     const selectedServiceObj = services.find((service) => service._id === selectedService);
-    formData.append('service', selectedServiceObj.title);
+    formData.append('service', selectedServiceObj ? selectedServiceObj.title : '');
+
 
     try {
       const config = {
