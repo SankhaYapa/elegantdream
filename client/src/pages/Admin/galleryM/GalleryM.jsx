@@ -87,8 +87,10 @@ export const GalleryM = () => {
     formData.append('thumbnail', thumbnail);
     formData.append('coverImg', coverImg);
     images.forEach((image) => formData.append('images', image));
+    console.log(services)
     const selectedServiceObj = services.find((service) => service._id === selectedService);
-    formData.append('service', selectedServiceObj ? selectedServiceObj.title : '');
+    console.log(selectedServiceObj)
+    formData.append('service',  selectedServiceObj.title);
 
 
     try {
@@ -121,7 +123,12 @@ export const GalleryM = () => {
 
   const handleEdit = (gallery) => {
     setName(gallery.name);
-    setSelectedService(gallery.service);
+    // Find the service object based on its title
+    const selectedServiceObj = services.find((service) => service.title === gallery.service);
+    console.log(gallery.service)
+    if (selectedServiceObj) {
+      setSelectedService(selectedServiceObj._id); // Set selectedService to _id of the service
+    }
     setThumbnailPreview(`${BASE_URL}${gallery.thumbnail}`);
     setCoverImgPreview(`${BASE_URL}${gallery.coverImg}`);
     setImagePreviews(gallery.images.map((image) => `${BASE_URL}${image}`));
@@ -129,6 +136,7 @@ export const GalleryM = () => {
     setEditId(gallery._id);
     setModalIsOpen(true);
   };
+  
 
   const handleDelete = async (id) => {
     try {
