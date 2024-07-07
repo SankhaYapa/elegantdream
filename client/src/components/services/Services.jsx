@@ -37,7 +37,7 @@ export const Services = () => {
       <span className='servicedesc'>Each photograph we capture is a testament to our passion for storytelling, turning fleeting moments into timeless art that resonates with emotion and beauty</span>
       <div className="services-container">
         {services.length === 0 ? (
-          Array.from({ length: 7 }).map((_, index) => (
+          Array.from({ length: 6 }).map((_, index) => (
             <div className='service-card' key={index}>
               <Skeleton height={'30vw'} width={'30vw'} className="service-card-img"/>
             </div>
