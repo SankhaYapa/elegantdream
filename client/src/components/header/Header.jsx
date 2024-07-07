@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import './header.scss';
 
 const Header = () => {
   const [headers, setHeaders] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   useEffect(() => {
     const fetchHeaders = async () => {
       try {
@@ -26,21 +29,21 @@ const Header = () => {
     return () => clearInterval(timer); // Cleanup the interval on component unmount
   }, [headers.length]);
 
-  if (headers.length === 0) {
-    return <div>Loading...</div>; // Optionally, show a loading state
-  }
-
   return (
     <div className="slide-container">
-      {headers.map((header, index) => (
-        <div
-          key={index}
-          className={`fade-image ${index === currentIndex ? 'active' : ''}`}
-          style={{ backgroundImage: `url("${BASE_URL}${header.images[0]}")` }}
-        >
-          <div className="caption">{header.caption}</div>
-        </div>
-      ))}
+      {headers.length === 0 ? (
+        <Skeleton count={10} baseColor={"#ebebeb"} className="Skeleton-container"/>
+      ) : (
+        headers.map((header, index) => (
+          <div
+            key={index}
+            className={`fade-image ${index === currentIndex ? 'active' : ''}`}
+            style={{ backgroundImage: `url("${BASE_URL}${header.images[0]}")` }}
+          >
+            <div className="caption">{header.caption}</div>
+          </div>
+        ))
+      )}
     </div>
   );
 };
