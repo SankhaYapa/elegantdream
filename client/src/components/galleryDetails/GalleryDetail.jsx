@@ -49,8 +49,8 @@ export const GalleryDetail = () => {
       <Navbar handleNavClick={handleNavClick} />
       <div className="gallery-detail-container">
         <div className="gallery-detail-cover" style={{ backgroundImage: `url("${BASE_URL}${galleryItem.coverImg}")` }}>
-          <h2>{galleryItem.name}</h2>
-          <span>{galleryItem.service}</span>
+          <h2>{galleryItem.service}</h2>
+          <span>{galleryItem.name}</span>
         </div>
         <div style={{ padding: '10px'}}>
           <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 3 }}>
