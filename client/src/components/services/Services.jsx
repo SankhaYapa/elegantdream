@@ -29,8 +29,11 @@ export const Services = () => {
       <span className='servicedesc'>Each photograph we capture is a testament to our passion for storytelling, turning fleeting moments into timeless art that resonates with emotion and beauty</span>
       <div className="services-container">
         {services.length === 0 ? (
-          Array.from({ length: 8 }).map((_, index) => (
-            <Skeleton key={index} height={200} width={200} />
+          Array.from({ length: 7 }).map((_, index) => (
+            <div className='service-card'>
+              <Skeleton key={index} height={'30vw'} width={'30vw'} className="service-card-img"/>
+            </div>
+            
           ))
         ) : (
           services.map(service => (

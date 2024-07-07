@@ -41,7 +41,7 @@ export const Gallery = () => {
         {gallery.length === 0 ? (
           Array.from({ length: 6 }).map((_, index) => (
             <div key={index} className="gallery-card">
-              <Skeleton height={300} width={200} />
+              <Skeleton height={'60vw'} width={'45vw'} />
             </div>
           ))
         ) : (
